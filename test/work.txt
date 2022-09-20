@@ -1,2 +1,2 @@
 [ ] - read something
-[ ] - algo
+[ ] - push the commit issue
