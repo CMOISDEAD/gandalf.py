@@ -7,7 +7,8 @@ from prettytable import PrettyTable
 
 
 # todo files path (~/todos/)
-path = "/home/camilo/Documents/programacion/python/mage/test"
+# path = "~/Documents/programacion/python/gandalf/test"
+path = "/home/camilo/todos"
 
 # Add a new todo
 def add(filename: str, msg: str) -> None:
