@@ -21,12 +21,18 @@ def add(filename: str, msg: str) -> None:
 
 
 # Remove a todo
-def remove():
-    pass
+def remove(filename: str, linenumber: int):
+    lines = file.lines(f"{path}/{filename}.txt")
+    del lines[int(linenumber) - 1]
+    msg = ""
+    for line in lines:
+        msg += f"{line}\n"
+    file.write(f"{path}/{filename}.txt", msg)
 
 
 # Update a todo
-def update(line: str) -> str:
+def update(linenumber: int) -> str:
+    line = linenumber
     prefix = line[3:]
     if prefix == "[ ]":
         line = f"[x]{line[3:]}"
@@ -67,7 +73,8 @@ def Table() -> None:
     dirs = file.alldir(path)
     data = []
     for dir in dirs:
-        data.append(file.read(f"{path}/{dir}"))
+        content = file.read(f"{path}/{dir}")
+        data.append(content if content != "\n\n" else "Nothing")
     table.append(dirs)
     table.append(data)
     tab = PrettyTable(table[0])

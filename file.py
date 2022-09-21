@@ -38,11 +38,12 @@ def numberlines(filepath: str) -> int:
     return number_lines
 
 
+# Return a list with all lines of a file
 def lines(filepath: str) -> list:
     with open(filepath, "r") as file:
-        data = file.read()
-        return data.split("\n")
+        return file.readlines()
 
 
+# Return a list with all elements in a dir
 def alldir(path: str) -> list:
     return os.listdir(path)

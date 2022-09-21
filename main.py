@@ -11,7 +11,7 @@ def main():
     if operation == "add":
         todo.add(sys.argv[2], sys.argv[3])
     elif operation == "remove":
-        todo.remove(sys.argv[2])
+        todo.remove(sys.argv[2], sys.argv[3])
     elif operation == "update":
         todo.update(sys.argv[2])
     elif operation == "get":
