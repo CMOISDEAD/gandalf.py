@@ -13,7 +13,7 @@ def main():
     elif operation == "remove":
         todo.remove(sys.argv[2], sys.argv[3])
     elif operation == "update":
-        todo.update(sys.argv[2])
+        todo.update(sys.argv[2], sys.argv[3])
     elif operation == "get":
         todo.get(sys.argv[2])
     elif operation == "size":

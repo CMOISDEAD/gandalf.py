@@ -6,7 +6,6 @@ import utils
 from prettytable import PrettyTable
 
 
-# todo files path (~/todos/)
 # path = "~/Documents/programacion/python/gandalf/test"
 path = "/home/camilo/todos"
 
@@ -31,14 +30,21 @@ def remove(filename: str, linenumber: int):
 
 
 # Update a todo
-def update(linenumber: int) -> str:
-    line = linenumber
-    prefix = line[3:]
-    if prefix == "[ ]":
-        line = f"[x]{line[3:]}"
+def update(filename: str, linenumber: int) -> str:
+    filepath = f"{path}/{filename}.txt"
+    lines = file.lines(filepath)
+    prefix = lines[int(linenumber) - 1]
+    if prefix[0:3] == "[ ]":
+        prefix = f"[x]{prefix[3:]}"
     else:
-        line = f"[ ]{line[3:]}"
-    return line
+        prefix = f"[ ]{prefix[3:]}"
+    del lines[int(linenumber) - 1]
+    lines.append(prefix)
+    msg = ""
+    for line in lines:
+        msg += line
+    file.write(filepath, msg)
+    utils.Print("Updated!", "green")
 
 
 # Get a todo
@@ -70,11 +76,11 @@ def all() -> None:
 # Format print for init shell
 def Table() -> None:
     table = []
-    dirs = file.alldir(path)
     data = []
+    dirs = file.alldir(path)
     for dir in dirs:
         content = file.read(f"{path}/{dir}")
-        data.append(content if content != "\n\n" else "Nothing")
+        data.append(content if utils.isEmpty(content) else "Nothing")
     table.append(dirs)
     table.append(data)
     tab = PrettyTable(table[0])
