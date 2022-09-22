@@ -88,4 +88,5 @@ def Table() -> None:
     table.append(data)
     tab = PrettyTable(table[0])
     tab.add_rows(table[1:])
+    tab.align = "l"
     print(tab)
