@@ -59,7 +59,10 @@ def size() -> None:
     todofiles = os.listdir(path)
     todosize: int = 0
     for todo in todofiles:
-        todosize += file.numberlines(f"{path}/{todo}")
+        lines = file.lines(f"{path}/{todo}")
+        for line in lines:
+            if line[0:3] != "[x]":
+                todosize += 1
 
     print(todosize)
 
